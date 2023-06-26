@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  // Use buttons to toggle between views
+  // Use buttons to toggle between views, once click one button go to this page , other button other page
   document.querySelector('#inbox').addEventListener('click', () => load_mailbox('inbox'));
   document.querySelector('#sent').addEventListener('click', () => load_mailbox('sent'));
   document.querySelector('#archived').addEventListener('click', () => load_mailbox('archive'));
@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function compose_email() {
 
-  // Show compose view and hide other views
+  // Show compose view and hide other div from inbox.html / views
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'block';
 
-  // Clear out composition fields
+  // Clear out composition fields, zum Erstellen einer Mail
   document.querySelector('#compose-recipients').value = '';
   document.querySelector('#compose-subject').value = '';
   document.querySelector('#compose-body').value = '';
@@ -24,7 +24,7 @@ function compose_email() {
 
 function load_mailbox(mailbox) {
   
-  // Show the mailbox and hide other views
+  // Show the mailbox and hide other div, thr form to compose emails / views
   document.querySelector('#emails-view').style.display = 'block';
   document.querySelector('#compose-view').style.display = 'none';
 
