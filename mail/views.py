@@ -29,7 +29,7 @@ def compose(request):
     if request.method != "POST":
         return JsonResponse({"error": "POST request required."}, status=400)
 
-    # Check recipient emails
+    # Check recipient emails , BODY & EMAIL from Models
     data = json.loads(request.body)
     emails = [email.strip() for email in data.get("recipients").split(",")]
     if emails == [""]:
@@ -37,7 +37,7 @@ def compose(request):
             "error": "At least one recipient required."
         }, status=400)
 
-    # Convert email addresses to users
+    # Convert email addresses to users, GET values from Models -> class - User -> has type email
     recipients = []
     for email in emails:
         try:
@@ -71,7 +71,7 @@ def compose(request):
 
     return JsonResponse({"message": "Email sent successfully."}, status=201)
 
-
+#we define mailbox below as inbox, sent, archive...
 @login_required
 def mailbox(request, mailbox):
 
