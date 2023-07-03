@@ -69,7 +69,7 @@ function load_mailbox(mailbox) {
 
       //Create div for each email
       const newEmail = document.createElement('div');
-      newEmail.className = "list-group-item";
+      newEmail.className = 'Mydiv';
       newEmail.innerHTML = `
       <h6>Sender: ${singleEmail.sender}</h6>
       <h5>Subject: ${singleEmail.subject}</h5>
@@ -77,7 +77,7 @@ function load_mailbox(mailbox) {
       `;
 
       // check if email read, if yes, class from styles.css read otherwise unread
-      newEmail.className = singleEmail.read ?'read' : 'unread';
+      newEmail.className = singleEmail.read ? 'read' : 'unread';
       // Add click event to email
       newEmail.addEventListener('click', function () {
         view_email(singleEmail.id)

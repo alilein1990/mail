@@ -3,9 +3,12 @@ textarea {
 }
 
 .read{
-    background-color: rgb(208, 206, 206);
+    background-color: rgb(177, 157, 157);
 }
 
 .unread{
     background-color: white;
+}
+.Mydiv{
+    border: 5px outset black;
 }
