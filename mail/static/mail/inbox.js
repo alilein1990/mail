@@ -64,7 +64,8 @@ fetch(`/emails/${id}`)
       btn_arch.addEventListener('click', function() {
           console.log('This btn_arch has been clicked!')
       });
-      document.querySelector('#email-detail-view').append(element);
+      
+      document.querySelector('#email-detail-view').append(btn_arch);
 
     });
   }
