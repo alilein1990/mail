@@ -72,9 +72,18 @@ fetch(`/emails/${id}`)
         // call .then and trigger function to be redirected to archive website
         .then(() => {load_mailbox ('archive')})
       });
-
       document.querySelector('#email-detail-view').append(btn_arch);
 
+      //Reply logic
+      const btn_reply = document.createElement('button');
+      btn_reply.innerHTML =  "Reply";
+      btn_reply.className =  "btn btn-info";
+      btn_reply.addEventListener('click', function() {
+
+        // when we click on relpy button will show reply in console, then we know buttonn is working 
+        //console.log("Reply");
+      })
+      document.querySelector('#email-detail-view').append(btn_reply);
     });
   }
 
@@ -104,7 +113,7 @@ function load_mailbox(mailbox) {
 
       //Create div for each email
       const newEmail = document.createElement('div');
-      newEmail.className = 'Mydiv';
+      newEmail.className = "border border-dark";
       newEmail.innerHTML = `
       <h6>Sender: ${singleEmail.sender}</h6>
       <h5>Subject: ${singleEmail.subject}</h5>
