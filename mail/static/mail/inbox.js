@@ -28,9 +28,10 @@ function compose_email() {
 }
  
 function view_email(id){
-// will get only emails with specific id 
+// will get only emails with specific id and display the div - email-detail-view
 fetch(`/emails/${id}`)
 .then(response => response.json())
+// we give the name for variable "email",
 .then(email => {
     // Print email
     console.log(email);
@@ -39,9 +40,34 @@ fetch(`/emails/${id}`)
     document.querySelector('#compose-view').style.display = 'none';
     document.querySelector('#email-detail-view').style.display = 'block';
 
-    document.querySelector('#email-detail-view').innerHTML = ``
-});
-}
+    document.querySelector('#email-detail-view').innerHTML = `
+    <ul class="list-group">
+      <li class="list-group-item"><strong>From: </strong> ${email.sender}</li>
+      <li class="list-group-item"><strong>To: </strong> ${email.recipients}</li>
+      <li class="list-group-item"><strong>Subject: </strong> ${email.subject}</li>
+      <li class="list-group-item"><strong>Timestamp: </strong> ${email.timestamp}</li>
+      <li class="list-group-item">${email.body}</li>
+    </ul>
+    `
+    // if email was not read now, get the email and chage status of read to true 
+    if(!email.read)
+      fetch(`/emails/${email.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          read: true
+          })
+      })
+      // Archive / Unarchive Logic
+      const btn_arch = document.createElement('button');
+      btn_arch.innerHTML = email.archived ? "Unarchive" : "Archive";
+      btn_arch.className = email.archived ? "btn btn-success" : "btn btn-danger";
+      btn_arch.addEventListener('click', function() {
+          console.log('This btn_arch has been clicked!')
+      });
+      document.querySelector('#email-detail-view').append(element);
+
+    });
+  }
 
 //load_mailbox expecting a variable ,mailbox is function in views.py -> inbox,  compose send or archive
 function load_mailbox(mailbox) {
