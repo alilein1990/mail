@@ -62,9 +62,17 @@ fetch(`/emails/${id}`)
       btn_arch.innerHTML = email.archived ? "Unarchive" : "Archive";
       btn_arch.className = email.archived ? "btn btn-success" : "btn btn-danger";
       btn_arch.addEventListener('click', function() {
-          console.log('This btn_arch has been clicked!')
+        // will change the status for us every time we click the button trough !email.archived 
+        fetch(`/emails/${email.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({
+              archived: !email.archived
+          })
+        })
+        // call .then and trigger function to be redirected to archive website
+        .then(() => {load_mailbox ('archive')})
       });
-      
+
       document.querySelector('#email-detail-view').append(btn_arch);
 
     });
