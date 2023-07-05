@@ -76,6 +76,7 @@ fetch(`/emails/${id}`)
 
       //Reply logic
       const btn_reply = document.createElement('button');
+      // innerHTML -what will be written on the button
       btn_reply.innerHTML =  "Reply";
       btn_reply.className =  "btn btn-info";
       btn_reply.addEventListener('click', function() {
