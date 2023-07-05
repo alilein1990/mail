@@ -82,10 +82,23 @@ fetch(`/emails/${id}`)
 
         // when we click on relpy button will show reply in console, then we know buttonn is working 
         //console.log("Reply");
-      })
+        // Function from views.py
+        compose_email();
+
+        document.querySelector('#compose-recipients').value = email.sender;
+        let subject = email.subject;
+        // If first part of the subject is nor Re
+        if(subject.split(' ',1)[0] !="Re:"){
+          // Do the function and set subject to Re + email , we overwrite it 
+          subject = "Re" + email.subject;
+        }
+        document.querySelector('#compose-subject').value = subject;
+        document.querySelector('#compose-body').value = `On ${email.timestamp} ${email.sender} wrote ${email.body}`;
+      
+      });
       document.querySelector('#email-detail-view').append(btn_reply);
-    });
-  }
+  });
+}
 
 //load_mailbox expecting a variable ,mailbox is function in views.py -> inbox,  compose send or archive
 function load_mailbox(mailbox) {
