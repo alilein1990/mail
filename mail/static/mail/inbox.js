@@ -91,7 +91,7 @@ fetch(`/emails/${id}`)
         // If first part of the subject is nor Re
         if(subject.split(' ',1)[0] !="Re:"){
           // Do the function and set subject to Re + email , we overwrite it 
-          subject = "Re" + email.subject;
+          subject = "Re: " + email.subject;
         }
         document.querySelector('#compose-subject').value = subject;
         document.querySelector('#compose-body').value = `On ${email.timestamp} ${email.sender} wrote ${email.body}`;
